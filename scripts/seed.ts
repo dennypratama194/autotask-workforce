@@ -43,6 +43,12 @@ async function main() {
   const owner_id = await ensureOwner();
   const o = { owner_id };
 
+  const existing = await must(db.from("tasks").select("id").eq("owner_id", owner_id).limit(1), "check tasks");
+  if (existing.length && !process.argv.includes("--reset")) {
+    console.error("Tasks already exist. Seeding deletes all tasks, projects and workers. Re-run with: pnpm seed --reset");
+    process.exit(1);
+  }
+
   // Reset sample data. Tasks cascade to messages, requests, runs and everything under them.
   await must(db.from("tasks").delete().eq("owner_id", owner_id), "clear tasks");
   await must(db.from("projects").delete().eq("owner_id", owner_id), "clear projects");
@@ -222,7 +228,7 @@ async function main() {
         { ...o, key: "chatgpt", state: "not_configured" },
         { ...o, key: "github_events", state: "unavailable" },
       ],
-      { onConflict: "key" },
+      { onConflict: "key", ignoreDuplicates: true },
     ),
     "integrations",
   );

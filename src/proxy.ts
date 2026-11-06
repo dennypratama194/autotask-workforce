@@ -2,9 +2,12 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { isAllowedEmail } from "@/lib/allowed-email";
 
-const PUBLIC_PATHS = ["/login", "/auth/callback"];
+// MCP and worker endpoints authenticate with their own bearer tokens.
+const PUBLIC_PATHS = ["/login", "/auth/callback", "/api/mcp", "/api/worker"];
 
 export async function proxy(request: NextRequest) {
+  if (process.env.E2E_FAKE_DB === "1" && process.env.NODE_ENV !== "production") return NextResponse.next();
+
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
