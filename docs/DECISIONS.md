@@ -37,3 +37,4 @@ Choices the PRD does not cover. Newest last.
 28. **Worker repos** clone from `https://github.com/{repo}.git` using the machine's git credentials.
 29. **`pnpm seed` refuses to run when tasks exist** unless given `--reset`, because it deletes them.
 30. **One commit.** M1 to M6 landed together rather than per milestone as PRD section 0 asks.
+31. **Hosting.** Vercel project `task-workspace`, served at `task-workspace-nine.vercel.app`, functions in `sin1` to sit next to the Supabase database in `ap-southeast-1`.
