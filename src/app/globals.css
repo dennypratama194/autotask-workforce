@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+:root {
+  /* PRD 11.2 raw tokens */
+  --tw-bg: #f7f7f8;
+  --tw-surface: #ffffff;
+  --tw-sidebar: #fbfbfc;
+  --tw-border: #e4e4e7;
+  --tw-border-strong: #d4d4d8;
+  --tw-text: #18181b;
+  --tw-text-secondary: #3f3f46;
+  --tw-text-muted: #52525b;
+  --tw-accent: #4f5bd5;
+  --tw-accent-hover: #3f4bc0;
+  --tw-accent-tint: #ecedf8;
+  --tw-accent-on-tint: #2d379a;
+  --tw-danger: #b42318;
+  --tw-danger-tint: #fdecec;
+  --tw-warning: #8f4200;
+  --tw-warning-tint: #fff0dd;
+  --tw-warning-soft: #fff8ee;
+  --tw-warning-border: #f1ddbf;
+  --tw-success: #1a6a37;
+  --tw-success-tint: #e5f5ea;
+
+  /* Status badges: background / text */
+  --status-inbox-bg: #f1f1f3;
+  --status-inbox-fg: #45454f;
+  --status-queue-bg: #edf1f7;
+  --status-queue-fg: #3b4f6b;
+  --status-progress-bg: #e7f0fd;
+  --status-progress-fg: #1b56ad;
+  --status-needs-bg: #fff0dd;
+  --status-needs-fg: #8f4200;
+  --status-review-bg: #f0ebfc;
+  --status-review-fg: #5b32b8;
+  --status-done-bg: #e5f5ea;
+  --status-done-fg: #1a6a37;
+
+  /* shadcn variables mapped to the tokens above */
+  --background: var(--tw-bg);
+  --foreground: var(--tw-text);
+  --card: var(--tw-surface);
+  --card-foreground: var(--tw-text);
+  --popover: var(--tw-surface);
+  --popover-foreground: var(--tw-text);
+  --primary: var(--tw-accent);
+  --primary-foreground: #ffffff;
+  --secondary: var(--tw-surface);
+  --secondary-foreground: var(--tw-text-secondary);
+  --muted: var(--tw-bg);
+  --muted-foreground: var(--tw-text-muted);
+  --accent: var(--tw-accent-tint);
+  --accent-foreground: var(--tw-accent-on-tint);
+  --destructive: var(--tw-danger);
+  --border: var(--tw-border);
+  --input: var(--tw-border-strong);
+  --ring: var(--tw-accent);
+  --sidebar: var(--tw-sidebar);
+  --radius: 8px;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--tw-sidebar);
+
+  --color-text-secondary: var(--tw-text-secondary);
+  --color-border-strong: var(--tw-border-strong);
+  --color-accent-hover: var(--tw-accent-hover);
+  --color-danger: var(--tw-danger);
+  --color-danger-tint: var(--tw-danger-tint);
+  --color-warning: var(--tw-warning);
+  --color-warning-tint: var(--tw-warning-tint);
+  --color-warning-soft: var(--tw-warning-soft);
+  --color-warning-border: var(--tw-warning-border);
+  --color-success: var(--tw-success);
+  --color-success-tint: var(--tw-success-tint);
+
+  --color-status-inbox-bg: var(--status-inbox-bg);
+  --color-status-inbox-fg: var(--status-inbox-fg);
+  --color-status-queue-bg: var(--status-queue-bg);
+  --color-status-queue-fg: var(--status-queue-fg);
+  --color-status-progress-bg: var(--status-progress-bg);
+  --color-status-progress-fg: var(--status-progress-fg);
+  --color-status-needs-bg: var(--status-needs-bg);
+  --color-status-needs-fg: var(--status-needs-fg);
+  --color-status-review-bg: var(--status-review-bg);
+  --color-status-review-fg: var(--status-review-fg);
+  --color-status-done-bg: var(--status-done-bg);
+  --color-status-done-fg: var(--status-done-fg);
+
+  /* PRD 11.1 type scale */
+  --text-label: 11.5px;
+  --text-sub: 12.5px;
+  --text-dense: 13.5px;
+  --text-base: 14px;
+  --text-section: 15px;
+  --text-title: 20px;
+
+  /* PRD 11.3 radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+
+  --breakpoint-sm: 375px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    color-scheme: light;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
